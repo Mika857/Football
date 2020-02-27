@@ -4,13 +4,36 @@
 Schuss::Schuss(int pinNum)
 {
     pin = pinNum;
-    pinMode(pin,OUTPUT);
-    digitalWrite(pin,LOW);
+    shot = false;
+    premil = 0;
 }
 
 void Schuss::Schiese()
 {
-    digitalWrite(pin,HIGH);
-    delay(50);
+    if(!shot)
+    {
+        digitalWrite(pin,HIGH);
+        premil = millis();
+        shot = true;
+    }
+    
+}
+
+void Schuss::Begin()
+{
+    pinMode(pin,OUTPUT);
     digitalWrite(pin,LOW);
+}
+
+void Schuss::update()
+{
+    if(shot)
+    {
+        if(millis() - premil >= delayValue)
+        {
+            shot = false;
+            digitalWrite(pin,LOW);
+        }
+    }
+    
 }

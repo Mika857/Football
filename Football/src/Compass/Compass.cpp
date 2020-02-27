@@ -6,12 +6,10 @@ Compass::Compass(int _pinNum)
     pinNum = _pinNum;
     pinMode(pinNum,INPUT);
     startValue = pulseIn(pinNum,HIGH)/100;
-
 }
 
-int Compass::GetValue()
+int Compass::Read()
 {
-    noInterrupts();
     int prevalue = pulseIn(pinNum,HIGH)/100;
 
     prevalue -= startValue;
@@ -25,6 +23,5 @@ int Compass::GetValue()
     {
         prevalue -= 360;
     }
-    interrupts();
     return prevalue;
 }
