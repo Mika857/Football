@@ -47,31 +47,39 @@ void Drive::RotateCounterClockwise(int _speed)
 
 void Drive::DriveForward(int speed)
 {
-  Motor(2,speed,*motora);
-  Motor(2,speed,*motorb);
-  Motor(2,speed,*motorc);
-  Motor(2,speed,*motord);
-}
-
-void Drive::DriveBackward(int speed){
   Motor(1,speed,*motora);
   Motor(1,speed,*motorb);
   Motor(1,speed,*motorc);
   Motor(1,speed,*motord);
 }
 
-void Drive::DriveRight(int speed){
+void Drive::DriveBackward(int speed){
   Motor(2,speed,*motora);
-  Motor(1,speed,*motorb);
+  Motor(2,speed,*motorb);
+  Motor(2,speed,*motorc);
+  Motor(2,speed,*motord);
+}
+
+void Drive::DriveRight(int speed){
+  Motor(1,speed,*motora);
+  Motor(2,speed,*motorb);
   Motor(1,speed,*motorc);
   Motor(2,speed,*motord);
 }
 
 void Drive::DriveLeft(int speed){
-  Motor(1,speed,*motora);
-  Motor(2,speed,*motorb);
+  Motor(2,speed,*motora);
+  Motor(1,speed,*motorb);
   Motor(2,speed,*motorc);
   Motor(1,speed,*motord);
+}
+
+void Drive::DriveDiagonalRechtsHinten(int speed)
+{
+  Motor(1,0,*motora);
+  Motor(2,speed,*motorb);
+  Motor(1,0,*motorc);
+  Motor(2,speed,*motord);
 }
 
 void Drive::Motor(int _dir,int _speed, Adafruit_DCMotor _motor)

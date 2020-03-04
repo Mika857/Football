@@ -20,6 +20,7 @@ class Drive
     void DriveBackward(int _speed);
     void DriveLeft(int _speed);
     void DriveRight(int _speed);
+    void DriveDiagonalRechtsHinten(int _speed);
 
     void Stop();
 };
